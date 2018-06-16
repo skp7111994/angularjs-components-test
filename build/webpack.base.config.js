@@ -40,6 +40,10 @@ module.exports = env => {
             test: /\.html$/,
             use: ['html-loader']
         },
+        {
+            test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            use: ['file-loader']
+        }
       ]
     },
     plugins: [

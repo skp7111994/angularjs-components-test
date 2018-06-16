@@ -27,7 +27,6 @@ const setApplicationMenu = () => {
 // on same machine like those are two separate apps.
 if (env.name !== "production") {
   const userDataPath = app.getPath("userData");
-  console.log(userDataPath);
   app.setPath("userData", `${userDataPath} (${env.name})`);
 }
 

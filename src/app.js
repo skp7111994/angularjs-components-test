@@ -1,14 +1,20 @@
 import "./stylesheets/main.css";
+import "./stylesheets/bootstrap.css";
 
 import 'angular';
 import '@uirouter/angularjs';
+import 'angular-ui-bootstrap'
 
 import mainController from './homepage/controller';
-import pouchService from './core/PouchService';
+import newRecordController from './newRecord/controller';
+import recordsController from './records/controller';
+import PouchService from './core/PouchService';
 
-angular.module('inventoryApp', ['ui.router'])
+angular.module('inventoryApp', ['ui.router','ui.bootstrap'])
     .controller('mainController', mainController)
-    .service('pouchService', pouchService)
+    .controller('newRecordController', newRecordController)
+    .controller('recordsController', recordsController)
+    .service('PouchService', PouchService)
     .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/");
 
@@ -16,14 +22,16 @@ angular.module('inventoryApp', ['ui.router'])
             .state('homepage', {
                 url: "/",
                 template: require("./homepage/homepage.html"),
-                controller: 'mainController'
+                controller: 'mainController as $ctrl'
             })
-            .state('calculator', {
-                url: "/calculator",
-                template: require("./calculator/calculator.html")
+            .state('records', {
+                url: "/records",
+                controller: 'recordsController as $ctrl',
+                template: require("./records/records.html"),
             })
-            .state('inventory', {
-                url: "/inventory",
-                template: require("./inventory/inventory.html")
+            .state('newRecord', {
+                url: "/newRecord",
+                template: require("./newRecord/newRecord.html"),
+                controller: 'newRecordController as $ctrl'
             })
     }]);
