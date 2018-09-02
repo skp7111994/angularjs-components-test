@@ -1,6 +1,6 @@
 import "./stylesheets/main.css";
 import "./stylesheets/bootstrap.css";
-
+import "./stylesheets/newRecord.css";
 import 'angular';
 import '@uirouter/angularjs';
 import 'angular-ui-bootstrap'

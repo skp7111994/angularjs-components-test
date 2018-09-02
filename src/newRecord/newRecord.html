@@ -1,11 +1,12 @@
-<div class="container">
+    <div class="container">
     <h2 class="text text-primary text-center">
         Record Form
     </h2>
-    <form>
-        <div class="form-group">
+
+    <form name="newRecord" role="form" data-toggle="validator">
+        <div class="form-groneup">
             <label for="name">Full Name</label>
-            <input type="text" ng-model="$ctrl.name" id="name" class="form-control">
+            <input type="text" ng-model="$ctrl.name" id="name" name="name" class="form-control" ng-pattern="/^[a-zA-Z. ]*$/" required>
         </div>
         <div class="form-group">
             <div class="input-group">
@@ -25,67 +26,81 @@
                         </li>
                     </ul>
                 </div>
-                <input type="text" class="form-control" aria-label="...">
+                <input type="text" ng-model="$ctrl.guardianName" class="form-control" id="guardianName" name="guardianName" class="form-control" ng-pattern="/^[a-zA-Z. ]*$/"  required>
             </div>
         </div>
         
         <div class="form-group">
             <label for="age">Age</label>
-            <input type="number" ng-model="$ctrl.age" id="age" class="form-control">
+            <input type="number" ng-model="$ctrl.age" id="age" name="age" class="form-control" ng-pattern="/^[0-9]*$/" required>
+            {{newRecord.age.$valid}}
         </div>
 
         <div class="form-group">
             <label for="address">Address</label>
-            <textarea ng-model="$ctrl.address" id="address" class="form-control"></textarea>
+            <textarea ng-model="$ctrl.address" id="address" name="address" class="form-control" required></textarea>
+            {{newRecord.address.$valid}}
         </div>
 
         <div class="form-group">
             <label for="phoneNumber">Phone Number</label>
-            <input type="number" id="phoneNumber" class="form-control">
+            <input type="text" ng-model="$ctrl.phoneNumber" id="phoneNumber" name="phoneNumber" class="form-control" ng-pattern="/^[0-9]*$/" ng-minlength="10" ng-maxlength="10" required>
+            {{newRecord.phoneNumber.$valid}}
         </div>
 
         <div class="form-group">
             <label for="aadharNumber">Aadhar Number</label>
-            <input type="number" ng-model="$ctrl.aadharNumber" id="aadharNumber" class="form-control" placeholder="This field is optional">
+            <input type="number" ng-model="$ctrl.aadharNumber" id="aadharNumber" name="aadharNumber" class="form-control" placeholder="This field is optional">
         </div>
 
         <div class="form-group">
             <label for="desc">Item Description</label>
-            <textarea ng-model="$ctrl.desc" id="desc" class="form-control"></textarea>
+            <textarea ng-model="$ctrl.desc" id="desc" name="desc" class="form-control" required></textarea>
+            {{newRecord.desc.$valid}}
         </div>
 
         <div class="form-group">
             <label for="itemWeight">Weight</label>
-            <input type="number" ng-model="$ctrl.itemWeight" id="itemWeight" class="form-control">
+            <input type="number" ng-model="$ctrl.itemWeight" id="itemWeight" name="itemWeight" class="form-control" ng-pattern="/^[0-9.]*$/" required>
+            {{newRecord.itemWeight.$valid}}
         </div>
 
         <div class="form-group">
             <label for="principle">Principle Amount</label>
-            <input type="number" ng-model="principle" id="principle" class="form-control">
+            <input type="number" ng-model="$ctrl.principle" id="principle" name="principle" class="form-control" ng-pattern="/^[0-9.]*$/" required
+                   ng-change="$ctrl.setRoi($ctrl.principle)">
+            {{newRecord.principle.$valid}}
         </div>
 
         <div class="form-group">
             <label for="roi">Rate of Interest</label>
-            <input type="number" ng-model="roi" id="roi" class="form-control" placeholder="This will be auto-populated">
+            <input type="number" ng-model="$ctrl.roi" id="roi" name="roi" class="form-control" placeholder="This will be auto-populated"
+                   disabled>
         </div>
 
         <div class="form-group">
             <label for="billNumber">Bill Number</label>
-            <input type="number" ng-model="billNumber" id="billNumber" class="form-control">
+            <input type="number" ng-model="$ctrl.billNumber" id="billNumber" name="billNumber" class="form-control" ng-pattern="/^[0-9]*$/" required>
+            {{newRecord.billNumber.$valid}}
         </div>
 
         <div class="form-group">
             <label for="img">Upload Image</label>
-            <input type="file" ng-model="img" id="img" class="form-control">
-            <p class="help-block">
+            <input type="file" ng-model="img" id="img" name="img" class="form-control">
+            <p class="help-block">  
                 Only .png and .jpg files are allowed
             </p>
         </div>
 
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" ng-click="$ctrl.submit($event)">
+            <input type="submit" class="btn btn-primary" ng-click="$ctrl.submit($event)" ng-disabled="newRecord.$invalid">
         </div>
+
     </form>
+        {{newRecord.ng-invalid}}
+        {{newRecord.ng-valid}}
 </div>
 
 <a ui-sref="homepage">Back</a>
+
+

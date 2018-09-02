@@ -1,0 +1,11 @@
+input.ng-valid, textarea.ng-valid{
+        border-color : lightgreen;
+    }
+
+input.ng-invalid, textarea.ng-invalid{
+        border-color : red;
+    }
+
+input.ng-untouched, textarea.ng-untouched{
+    border-color: #ccc;
+}

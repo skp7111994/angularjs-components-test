@@ -30,6 +30,15 @@ class newRecordController {
         this.guardianRelation = relation;
         this.gender = relationMap[relation];
     }
+    
+    setRoi(arg) {
+        if(arg>20000) {
+            this.roi = 2;
+        }
+        else{
+            this.roi = 3;
+        }
+    }
 
     submit($event) {
         $event.stopPropagation();
@@ -41,6 +50,8 @@ class newRecordController {
     }
 }
 
-newRecordController.$inject = ['PouchService'];
+newRecordController.$inject = ['PouchService']; 
+
+
 
 export default newRecordController
