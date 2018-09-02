@@ -41,6 +41,8 @@ class newRecordController {
     }
 }
 
-newRecordController.$inject = ['PouchService'];
+newRecordController.$inject = ['PouchService']; 
+
+
 
 export default newRecordController
